@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="722.0" styleClass="frame" stylesheets="@chronusfxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chronusfx.ChronusFXMLController">
     <children>
-      <AnchorPane layoutY="6.0" prefHeight="266.0" prefWidth="714.0" styleClass="frame">
+      <AnchorPane layoutX="-2.0" layoutY="6.0" prefHeight="329.0" prefWidth="724.0" styleClass="frame">
          <children>
             <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="313.0" prefWidth="705.0" styleClass="mainFxmlClass" stylesheets="@chronusfxml.css">
                <children>
