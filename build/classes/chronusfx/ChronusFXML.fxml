@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="722.0" styleClass="frame" stylesheets="@chronusfxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chronusfx.ChronusFXMLController">
+    <children>
+      <AnchorPane layoutY="6.0" prefHeight="266.0" prefWidth="714.0" styleClass="frame">
+         <children>
+            <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="313.0" prefWidth="705.0" styleClass="mainFxmlClass" stylesheets="@chronusfxml.css">
+               <children>
+                  <AnchorPane layoutX="14.0" layoutY="94.0" prefHeight="189.0" prefWidth="170.0" styleClass="screen">
+                     <children>
+                        <Canvas fx:id="dayTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0" />
+                        <Canvas fx:id="dayOne" height="164.0" layoutX="85.0" layoutY="14.0" styleClass="led" width="67.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="184.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
+                     <children>
+                        <Canvas fx:id="hourTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0" />
+                        <Canvas fx:id="hourOne" height="164.0" layoutX="89.0" layoutY="14.0" styleClass="led" width="67.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="354.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
+                     <children>
+                        <Canvas fx:id="minTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0" />
+                        <Canvas fx:id="minOne" height="164.0" layoutX="88.0" layoutY="14.0" styleClass="led" width="67.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="523.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
+                     <children>
+                        <Canvas fx:id="secTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0" />
+                        <Canvas fx:id="secOne" height="164.0" layoutX="88.0" layoutY="14.0" styleClass="led" width="67.0" />
+                     </children>
+                  </AnchorPane>
+                    <Label fx:id="label" layoutX="235.0" layoutY="16.0" minHeight="16" minWidth="69" prefHeight="53.0" prefWidth="236.0" styleClass="function-button" stylesheets="@chronusfxml.css" text="Chronus 2.0" />
+                  <Button fx:id="mainButton" layoutX="564.0" layoutY="16.0" mnemonicParsing="false" onAction="#startAction" prefHeight="25.0" prefWidth="107.0" styleClass="function-button" text="Start" />
+                  <AnchorPane layoutX="34.0" layoutY="7.0" styleClass="mainFxmlClass">
+                     <children>
+                        <ImageView fitHeight="82.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" styleClass="function-button">
+                           <image>
+                              <Image url="@../../../Chronos/src/com/wms/chronos/images/splash_sm_1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>
