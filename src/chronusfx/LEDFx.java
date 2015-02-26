@@ -34,6 +34,8 @@ public class LEDFx  {
     public void setLEDColor(Color color )
     {
         this.LEDColor = color;
+        this.canvas.getGraphicsContext2D().clearRect(0, 0, 300, 200);
+        this.render();
     }
     
     public void setLEDTo( int value )

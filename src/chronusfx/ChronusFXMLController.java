@@ -9,6 +9,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -16,7 +18,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.util.Callback;
 import javafx.util.Duration;
 
 /**
@@ -24,6 +33,20 @@ import javafx.util.Duration;
  * @author matthew.g.stemen
  */
 public class ChronusFXMLController implements Initializable {
+    
+    
+  static class ColorRectCell extends ListCell<String>{
+      @Override
+      public void updateItem(String item, boolean empty){
+          super.updateItem(item, empty);
+          Rectangle rect = new Rectangle(120,18);
+          if(item != null){
+              rect.setFill(Color.web(item));
+              setGraphic(rect);
+      }
+  }
+  }   
+
     
     public enum TimerAction
     {
@@ -92,6 +115,9 @@ public class ChronusFXMLController implements Initializable {
     
     @FXML
     private Canvas dayTen;
+    
+    @FXML
+    private ComboBox<String> colorChoice;
     
     Timeline timeline;
     
@@ -188,8 +214,44 @@ public class ChronusFXMLController implements Initializable {
         label.setText("Hello World!");
     }
     
+    @FXML
+    private void handleColorChoice(ActionEvent event)
+    {
+        System.out.println("Setting Color");
+        String colorAsString = this.colorChoice.getValue();
+        Color newColor = Color.valueOf(colorAsString);
+        if( newColor != null )
+        {
+            this.dayTenLEDFx.setLEDColor(newColor);
+            this.dayOneLEDFx.setLEDColor(newColor);
+            this.hourTenLEDFx.setLEDColor(newColor);
+            this.hourOneLEDFx.setLEDColor(newColor);
+            this.minTenLEDFx.setLEDColor(newColor);
+            this.minOneLEDFx.setLEDColor(newColor);
+            this.secTenLEDFx.setLEDColor(newColor);
+            this.secOneLEDFx.setLEDColor(newColor);
+        }
+        
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        // set the color combo
+        ObservableList<String> data = FXCollections.observableArrayList(
+            "lime", "orange", "gold", "coral", "darkgoldenrod", "lightsalmon", "black", "rosybrown", "blue",
+            "blueviolet", "white");  
+        colorChoice.setItems(data);
+
+        Callback<ListView<String>, ListCell<String>> factory = new Callback<ListView<String>, ListCell<String>>() {
+        @Override
+        public ListCell<String> call(ListView<String> list) {
+            return new ColorRectCell();
+        }
+        };
+
+        colorChoice.setCellFactory(factory);
+        colorChoice.setButtonCell(factory.call(null));
         
         timeline = new Timeline();
         
