@@ -75,7 +75,7 @@
                         <Bloom />
                      </effect>
                   </AnchorPane>
-                    <Label fx:id="label" layoutX="235.0" layoutY="16.0" minHeight="16" minWidth="69" prefHeight="53.0" prefWidth="236.0" styleClass="function-button" stylesheets="@chronusfxml.css" text="Chronus 2.0" />
+                    <Label fx:id="label" layoutX="235.0" layoutY="16.0" minHeight="16" minWidth="69" prefHeight="53.0" prefWidth="236.0" styleClass="function-button" stylesheets="@chronusfxml.css" text="Chronus 2.0" textAlignment="CENTER" />
                   <Button fx:id="mainButton" layoutX="564.0" layoutY="16.0" mnemonicParsing="false" onAction="#startAction" prefHeight="25.0" prefWidth="107.0" styleClass="function-button" text="Start" />
                   <AnchorPane layoutX="34.0" layoutY="7.0" styleClass="mainFxmlClass">
                      <children>

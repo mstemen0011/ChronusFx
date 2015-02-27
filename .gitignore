@@ -5,3 +5,4 @@ dist/run1463136144/web-files/dtjava.js
 dist/run1463136144/web-files/get_java.png
 *.png
 build/built-jar.properties
+!/src/chronusfx/images/splash_sm_1.png

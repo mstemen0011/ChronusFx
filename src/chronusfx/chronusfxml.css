@@ -29,7 +29,8 @@
 .function-button{
     -fx-font-size: 18pt;
     -fx-text-fill: #006464;
-    -fx-background-color: #DFB951;
+    /* -fx-background-color: #DFB951; */
+    -fx-background-color: black;
     -fx-border-radius: 10;
     -fx-background-radius: 5;
     -fx-border-color: rgb(49, 89, 23);
