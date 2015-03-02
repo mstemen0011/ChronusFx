@@ -8,6 +8,8 @@
     -fx-background-radius: 10;
     -fx-border-radius: 10;
     -fx-border-color: red;
+    -fx-text-fill: wheat;
+   
 }
 
 .frame {
@@ -28,7 +30,7 @@
 
 .function-button{
     -fx-font-size: 18pt;
-    -fx-text-fill: #006464;
+    -fx-text-fill: wheat;
     /* -fx-background-color: #DFB951; */
     -fx-background-color: black;
     -fx-border-radius: 10;

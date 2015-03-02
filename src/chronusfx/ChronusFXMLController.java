@@ -6,6 +6,7 @@
 package chronusfx;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -23,6 +24,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Callback;
@@ -33,8 +35,17 @@ import javafx.util.Duration;
  * @author matthew.g.stemen
  */
 public class ChronusFXMLController implements Initializable {
-    
-    
+  /* 
+    Cnceptually, a time slot is a constantly updating time seqment with a frozen start time that is named buy some 
+    relevent unique event ("lunch", "work start", etc ). At any given time a particular time slot can be shown and will
+    continue to elapse (progressively) as long as it in focus of the main LED. The event can be  
+    */  
+  class TimeSlot 
+  {
+      long startTimeStampInMillis = 0;
+      String timeSlotName = "";
+  }
+          
   static class ColorRectCell extends ListCell<String>{
       @Override
       public void updateItem(String item, boolean empty){
@@ -119,11 +130,22 @@ public class ChronusFXMLController implements Initializable {
     @FXML
     private ComboBox<String> colorChoice;
     
+    @FXML
+    private ComboBox<String> timeSlotChoice;
+    
+    
+    @FXML
+    private TextField timeSlotName;
+    
     Timeline timeline;
     
     private static final Integer STARTTIME = 0;
     
     private Integer timeSeconds;
+            
+    private ObservableList<String> timeSlotKeys;
+    
+    private HashMap<String, TimeSlot> timeSlotMap;
     
     @FXML
     private void startAction()
@@ -134,13 +156,15 @@ public class ChronusFXMLController implements Initializable {
             reset();
             this.timeline.stop();
             this.mainButton.setText(TimerAction.Start.getAction());
+         
         }
         else
         {  
             reset();
             this.mainButton.setText(TimerAction.Stop.getAction());
             timeSeconds = STARTTIME;
- 
+            this.timeSlotName.setText("Default");
+            this.addTime(null);
             // update time
             this.setTime( this.timeSeconds.longValue() * 1000 );
             timeline = new Timeline();
@@ -195,6 +219,24 @@ public class ChronusFXMLController implements Initializable {
         
     }
     
+    @FXML
+    private void addTime(ActionEvent event)
+    {
+        String newTimeSlotName = this.timeSlotName.getText();
+        if( ! this.timeSlotKeys.contains(newTimeSlotName))
+        {
+            timeSlotKeys.add(newTimeSlotName);
+            TimeSlot newTimeSlot = new TimeSlot();
+            newTimeSlot.timeSlotName = newTimeSlotName;
+            newTimeSlot.startTimeStampInMillis = System.currentTimeMillis();
+            this.timeSlotMap.put(newTimeSlotName, newTimeSlot );
+        }
+        
+        
+        
+        
+    }
+    
     private void reset()
     {
         this.dayOneLEDFx.setLEDTo(0);
@@ -241,7 +283,9 @@ public class ChronusFXMLController implements Initializable {
         ObservableList<String> data = FXCollections.observableArrayList(
             "lime", "orange", "gold", "coral", "darkgoldenrod", "lightsalmon", "black", "rosybrown", "blue",
             "blueviolet", "white");  
+        timeSlotKeys = this.timeSlotChoice.getItems();
         colorChoice.setItems(data);
+        timeSlotMap = new HashMap<>();
 
         Callback<ListView<String>, ListCell<String>> factory = new Callback<ListView<String>, ListCell<String>>() {
         @Override

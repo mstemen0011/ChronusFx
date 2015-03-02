@@ -19,60 +19,60 @@
                      <children>
                         <Canvas fx:id="dayTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0">
                            <effect>
-                              <Glow />
+                              <Glow level="0.44" />
                            </effect></Canvas>
                         <Canvas fx:id="dayOne" height="164.0" layoutX="85.0" layoutY="14.0" styleClass="led" width="67.0">
                            <effect>
-                              <Glow />
+                              <Glow level="0.44" />
                            </effect></Canvas>
                      </children>
                      <effect>
-                        <Bloom />
+                        <BoxBlur />
                      </effect>
                   </AnchorPane>
                   <AnchorPane layoutX="184.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
                      <children>
                         <Canvas fx:id="hourTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0">
                            <effect>
-                              <Glow />
+                              <Glow level="0.44" />
                            </effect></Canvas>
                         <Canvas fx:id="hourOne" height="164.0" layoutX="89.0" layoutY="14.0" styleClass="led" width="67.0">
                            <effect>
-                              <Glow />
+                              <Glow level="0.44" />
                            </effect></Canvas>
                      </children>
                      <effect>
-                        <Bloom />
+                        <BoxBlur />
                      </effect>
                   </AnchorPane>
                   <AnchorPane layoutX="354.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
                      <children>
                         <Canvas fx:id="minTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0">
                            <effect>
-                              <Glow />
+                              <Glow level="0.44" />
                            </effect></Canvas>
                         <Canvas fx:id="minOne" height="164.0" layoutX="88.0" layoutY="14.0" styleClass="led" width="67.0">
                            <effect>
-                              <Glow />
+                              <Glow level="0.44" />
                            </effect></Canvas>
                      </children>
                      <effect>
-                        <Bloom />
+                        <BoxBlur />
                      </effect>
                   </AnchorPane>
                   <AnchorPane layoutX="523.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
                      <children>
                         <Canvas fx:id="secTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0">
                            <effect>
-                              <Glow />
+                              <Glow level="0.44" />
                            </effect></Canvas>
                         <Canvas fx:id="secOne" height="164.0" layoutX="88.0" layoutY="14.0" styleClass="led" width="67.0">
                            <effect>
-                              <Glow />
+                              <Glow level="0.44" />
                            </effect></Canvas>
                      </children>
                      <effect>
-                        <Bloom />
+                        <BoxBlur />
                      </effect>
                   </AnchorPane>
                     <Label fx:id="label" layoutX="235.0" layoutY="16.0" minHeight="16" minWidth="69" prefHeight="53.0" prefWidth="236.0" styleClass="function-button" stylesheets="@chronusfxml.css" text="Chronus 2.0" textAlignment="CENTER" />
@@ -86,7 +86,9 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <ComboBox fx:id="colorChoice" layoutX="279.0" layoutY="283.0" onAction="#handleColorChoice" prefWidth="150.0" styleClass="mainFxmlClass" />
+                  <ComboBox fx:id="colorChoice" layoutX="278.0" layoutY="283.0" onAction="#handleColorChoice" prefWidth="150.0" styleClass="mainFxmlClass" />
+                  <ComboBox fx:id="timeSlotChoice" layoutX="138.0" layoutY="283.0" onAction="#addTime" prefHeight="27.0" prefWidth="94.0" styleClass="mainFxmlClass" />
+                  <TextField fx:id="timeSlotName" layoutX="14.0" layoutY="284.0" onAction="#addTime" prefHeight="25.0" prefWidth="121.0" styleClass="mainFxmlClass" />
                </children>
                <effect>
                   <Reflection />
