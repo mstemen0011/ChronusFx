@@ -19,7 +19,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -42,8 +41,15 @@ public class ChronusFXMLController implements Initializable {
     */  
   class TimeSlot 
   {
+      long createTimeStampInMillis = 0;
       long startTimeStampInMillis = 0;
       String timeSlotName = "";
+      boolean isStarted = false;
+      
+      public TimeSlot()
+      {
+          createTimeStampInMillis = System.currentTimeMillis();
+      }
   }
           
   static class ColorRectCell extends ListCell<String>{
@@ -79,23 +85,23 @@ public class ChronusFXMLController implements Initializable {
     }
     // the virtual LED:
     
-    SevenSegmentLED secOneLED;
-    SevenSegmentLED secTenLED;
-    SevenSegmentLED minOneLED;
-    SevenSegmentLED minTenLED;
-    SevenSegmentLED hourOneLED;
-    SevenSegmentLED hourTenLED;
-    SevenSegmentLED dayOneLED;
-    SevenSegmentLED dayTenLED;
+    MultiSegmentLED secOneLED;
+    MultiSegmentLED secTenLED;
+    MultiSegmentLED minOneLED;
+    MultiSegmentLED minTenLED;
+    MultiSegmentLED hourOneLED;
+    MultiSegmentLED hourTenLED;
+    MultiSegmentLED dayOneLED;
+    MultiSegmentLED dayTenLED;
     
-    LEDFx secOneLEDFx = null;
-    LEDFx secTenLEDFx = null;
-    LEDFx minOneLEDFx = null;
-    LEDFx minTenLEDFx = null;
-    LEDFx hourOneLEDFx = null;
-    LEDFx hourTenLEDFx = null;
-    LEDFx dayOneLEDFx = null;
-    LEDFx dayTenLEDFx = null;    
+    MultiSegmentLEDFx secOneLEDFx = null;
+    MultiSegmentLEDFx secTenLEDFx = null;
+    MultiSegmentLEDFx minOneLEDFx = null;
+    MultiSegmentLEDFx minTenLEDFx = null;
+    MultiSegmentLEDFx hourOneLEDFx = null;
+    MultiSegmentLEDFx hourTenLEDFx = null;
+    MultiSegmentLEDFx dayOneLEDFx = null;
+    MultiSegmentLEDFx dayTenLEDFx = null;    
     
     @FXML
     private Button mainButton;
@@ -133,11 +139,15 @@ public class ChronusFXMLController implements Initializable {
     @FXML
     private ComboBox<String> timeSlotChoice;
     
+    @FXML
+    private ComboBox<String> segmentTypeChoice;
     
     @FXML
     private TextField timeSlotName;
     
     Timeline timeline;
+    
+    TimeSlot timeSlotInFocus;
     
     private static final Integer STARTTIME = 0;
     
@@ -146,6 +156,10 @@ public class ChronusFXMLController implements Initializable {
     private ObservableList<String> timeSlotKeys;
     
     private HashMap<String, TimeSlot> timeSlotMap;
+            
+    private boolean timeIsRunning = false;
+            
+    LED.type LedSegType = LED.type.Seven;
     
     @FXML
     private void startAction()
@@ -190,31 +204,31 @@ public class ChronusFXMLController implements Initializable {
         long baseTime = timeInMillis;
         long days = baseTime / 86400000;
         days = days % 24;
-        int dayTen = (int) days/10;
-        int dayOne = (int) days%10;
-        this.dayTenLEDFx.setLEDTo(dayTen);
-        this.dayTenLEDFx.setLEDTo(dayOne);
+        int dayTenVal = (int) days/10;
+        int dayOneVal = (int) days%10;
+        this.dayTenLEDFx.setLEDTo(dayTenVal);
+        this.dayTenLEDFx.setLEDTo(dayOneVal);
         // calc and set the hours fields
         long hours = baseTime / 3600000;
         hours = hours % 60;
-        int hourTen = (int) hours/10;
-        int hourOne = (int) hours%10;
-        this.hourTenLEDFx.setLEDTo(hourTen);
-        this.hourOneLEDFx.setLEDTo(hourOne);
+        int hourTenValue = (int) hours/10;
+        int hourOneValue = (int) hours%10;
+        this.hourTenLEDFx.setLEDTo(hourTenValue);
+        this.hourOneLEDFx.setLEDTo(hourOneValue);
        // calc and set the minutes fields
         long mins = baseTime / 60000;
         mins = mins % 60;
-        int minsTen = (int) mins/10;
-        int minsOne = (int) mins%10;
-        this.minTenLEDFx.setLEDTo(minsTen);
-        this.minOneLEDFx.setLEDTo(minsOne);
+        int minsTenValue = (int) mins/10;
+        int minsOneValue = (int) mins%10;
+        this.minTenLEDFx.setLEDTo(minsTenValue);
+        this.minOneLEDFx.setLEDTo(minsOneValue);
         // calc and set the seconds fields
         long secs = baseTime / 1000;
         secs = secs % 60;
-        int secsTen = (int) secs/10;
-        int secsOne = (int) secs%10;
-        this.secTenLEDFx.setLEDTo(secsTen);
-        this.secOneLEDFx.setLEDTo(secsOne);
+        int secsTenValue = (int) secs/10;
+        int secsOneValue = (int) secs%10;
+        this.secTenLEDFx.setLEDTo(secsTenValue);
+        this.secOneLEDFx.setLEDTo(secsOneValue);
         
         
     }
@@ -230,6 +244,7 @@ public class ChronusFXMLController implements Initializable {
             newTimeSlot.timeSlotName = newTimeSlotName;
             newTimeSlot.startTimeStampInMillis = System.currentTimeMillis();
             this.timeSlotMap.put(newTimeSlotName, newTimeSlot );
+            this.timeSlotChoice.getSelectionModel().select(newTimeSlotName);
         }
         
         
@@ -237,6 +252,28 @@ public class ChronusFXMLController implements Initializable {
         
     }
     
+    @FXML
+    private void selectTimeSlot(ActionEvent event)
+    {
+        String key = this.timeSlotChoice.getSelectionModel().getSelectedItem();
+        TimeSlot ts = this.timeSlotMap.get(key);
+        System.out.println("Time slot name is: " + ts.timeSlotName);
+        System.out.println("Create time is: " + ts.createTimeStampInMillis );
+        this.timeSlotInFocus = ts;
+        this.timeIsRunning = ts.isStarted;
+        
+    }
+    
+    private void focusCurrentTimeSlot()
+    {
+        // basic on the state of the current time slot, show the elasped time and 
+        // the accumulating time
+        if( this.timeSlotInFocus.isStarted )
+        {
+            
+        }
+        
+    }
     private void reset()
     {
         this.dayOneLEDFx.setLEDTo(0);
@@ -250,10 +287,25 @@ public class ChronusFXMLController implements Initializable {
       
     }
     
-    @FXML
-    private void handleButtonAction(ActionEvent event) {
-        System.out.println("You clicked me!");
-        label.setText("Hello World!");
+     @FXML
+    private void handleTypeChoice(ActionEvent event)
+    {
+        
+        String typeAsString = this.segmentTypeChoice.getValue();
+        System.out.println("Setting Type: " + typeAsString );
+        LED.type newType = LED.type.valueOf(typeAsString);
+        if( newType != null )
+        {
+            this.dayTenLED.setLEDType(newType);
+            this.dayOneLED.setLEDType(newType);
+            this.hourTenLED.setLEDType(newType);
+            this.hourOneLED.setLEDType(newType);
+            this.minTenLED.setLEDType(newType);
+            this.minOneLED.setLEDType(newType);
+            this.secTenLED.setLEDType(newType);
+            this.secOneLED.setLEDType(newType);
+        }
+        
     }
     
     @FXML
@@ -281,10 +333,14 @@ public class ChronusFXMLController implements Initializable {
         
         // set the color combo
         ObservableList<String> data = FXCollections.observableArrayList(
-            "lime", "orange", "gold", "coral", "darkgoldenrod", "lightsalmon", "black", "rosybrown", "blue",
+            "limegreen", "orangered","darkorange", "goldenrod", "coral", "darkgoldenrod", "lightsalmon", "black", "rosybrown", "blue",
             "blueviolet", "white");  
+        
+        ObservableList<String> segmentTypes = FXCollections.observableArrayList( 
+        "Seven", "Nine");
         timeSlotKeys = this.timeSlotChoice.getItems();
         colorChoice.setItems(data);
+        segmentTypeChoice.setItems(segmentTypes);
         timeSlotMap = new HashMap<>();
 
         Callback<ListView<String>, ListCell<String>> factory = new Callback<ListView<String>, ListCell<String>>() {
@@ -299,40 +355,39 @@ public class ChronusFXMLController implements Initializable {
         
         timeline = new Timeline();
         
-        secOneLED = new SevenSegmentLED(0);
-        secTenLED = new SevenSegmentLED(0);                
-        minOneLED = new SevenSegmentLED(0);
-        minTenLED = new SevenSegmentLED(0);
-        hourOneLED = new SevenSegmentLED(0);
-        hourTenLED = new SevenSegmentLED(0);
-        dayOneLED = new SevenSegmentLED(0);
-        dayTenLED = new SevenSegmentLED(0);   
-        
-        secOneLEDFx = new LEDFx( secOne, secOneLED );
+        secOneLED = new MultiSegmentLED(0, LedSegType);
+        secTenLED = new MultiSegmentLED(0, LedSegType);                
+        minOneLED = new MultiSegmentLED(0, LedSegType);
+        minTenLED = new MultiSegmentLED(0, LedSegType);
+        hourOneLED = new MultiSegmentLED(0, LedSegType);
+        hourTenLED = new MultiSegmentLED(0, LedSegType);
+        dayOneLED = new MultiSegmentLED(0, LedSegType);
+        dayTenLED = new MultiSegmentLED(0, LedSegType);           
+        secOneLEDFx = new MultiSegmentLEDFx( secOne, secOneLED );
         secOneLED.setLEDTo(8);
         secOneLEDFx.render();
-        secTenLEDFx = new LEDFx( secTen, secTenLED );
+        secTenLEDFx = new MultiSegmentLEDFx( secTen, secTenLED );
         secTenLED.setLEDTo(7);
         secTenLEDFx.render();
         
-        minOneLEDFx = new LEDFx( minOne, minOneLED );
+        minOneLEDFx = new MultiSegmentLEDFx( minOne, minOneLED );
         minOneLED.setLEDTo(6);
         minOneLEDFx.render();
-        minTenLEDFx = new LEDFx( minTen, minTenLED );
+        minTenLEDFx = new MultiSegmentLEDFx( minTen, minTenLED );
         minTenLED.setLEDTo(5);
         minTenLEDFx.render();
         
-        hourOneLEDFx = new LEDFx( hourOne, hourOneLED );
+        hourOneLEDFx = new MultiSegmentLEDFx( hourOne, hourOneLED );
         hourOneLED.setLEDTo(4);
         hourOneLEDFx.render();
-        hourTenLEDFx = new LEDFx( hourTen, hourTenLED );
+        hourTenLEDFx = new MultiSegmentLEDFx( hourTen, hourTenLED );
         hourTenLED.setLEDTo(3);
         hourTenLEDFx.render();
         
-        dayOneLEDFx = new LEDFx( dayOne, dayOneLED );
+        dayOneLEDFx = new MultiSegmentLEDFx( dayOne, dayOneLED );
         dayOneLED.setLEDTo(2);
         dayOneLEDFx.render();
-        dayTenLEDFx = new LEDFx( dayTen, dayTenLED );
+        dayTenLEDFx = new MultiSegmentLEDFx( dayTen, dayTenLED );
         dayTenLED.setLEDTo(1);
         dayTenLEDFx.render();
         

@@ -21,7 +21,7 @@ public class ChronusFx extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("ChronusFXML.fxml"));
-        Image systemImage = new Image(getClass().getResourceAsStream("/chronusfx/images/splash_sm_1.png"));
+        Image systemImage = new Image(getClass().getResourceAsStream("/chronusfx/images/chronusHourGlass_1_128.png"));
         Scene scene = new Scene(root);
         stage.getIcons().add(systemImage);
         stage.setScene(scene);

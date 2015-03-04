@@ -10,7 +10,7 @@ import java.util.EnumSet;
  *
  * @author Matt
  */
-public final class SevenSegmentLED extends LED {
+public final class NineSegmentLED extends LED {
 
     TimeWatcherInterface timeWatcher;
     @Override
@@ -26,13 +26,15 @@ public final class SevenSegmentLED extends LED {
         LowerLeftBar,
         LowerRightBar,
         BottomBar,
+        DiaTopBar,
+        DiaBottomBar,
         DP;
     }
     private final EnumSet<Segment> segments = EnumSet.noneOf(Segment.class);
     int current;
-    LED.type type = LED.type.Seven;
+    LED.type type = LED.type.Nine;
 
-    public SevenSegmentLED(int initValue) {
+    public NineSegmentLED(int initValue) {
         current = initValue;
         this.setLEDTo(current);
     }
@@ -102,13 +104,13 @@ public final class SevenSegmentLED extends LED {
                 segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
                 break;
             case 1:
-                segments.addAll(EnumSet.of( Segment.TopRightBar, Segment.LowerRightBar ));
+                segments.addAll(EnumSet.of( Segment.DiaTopBar, Segment.TopRightBar, Segment.LowerRightBar ));
                 break;
             case 2:
-                segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopRightBar, Segment.MiddleBar, Segment.LowerLeftBar, Segment.BottomBar));
+                segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopRightBar, Segment.DiaBottomBar, Segment.BottomBar));
                 break;
             case 3:
-                segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopRightBar, Segment.MiddleBar, Segment.LowerRightBar, Segment.BottomBar));
+                segments.addAll(EnumSet.of(Segment.TopBar, Segment.DiaTopBar, Segment.MiddleBar, Segment.DiaBottomBar));
                 break;
             case 4:
                 segments.addAll(EnumSet.of(Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBar, Segment.LowerRightBar));
@@ -117,17 +119,16 @@ public final class SevenSegmentLED extends LED {
                 segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.MiddleBar, Segment.LowerRightBar, Segment.BottomBar));
                 break;
             case 6:
-                segments.addAll(EnumSet.of(Segment.TopLeftBar, Segment.MiddleBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
+                segments.addAll(EnumSet.of(Segment.DiaTopBar, Segment.MiddleBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
                 break;
             case 7:
-                segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopRightBar, Segment.LowerRightBar));
+                segments.addAll(EnumSet.of(Segment.TopBar, Segment.DiaTopBar ,Segment.LowerLeftBar ));
                 break;
-
             case 8:
                 segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
                 break;
             case 9:
-                segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBar, Segment.LowerRightBar));
+                segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBar, Segment.DiaBottomBar ));
                 break;
         }
         // System.out.println("segments are now: " + segments.toString());

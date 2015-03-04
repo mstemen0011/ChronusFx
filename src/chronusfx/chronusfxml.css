@@ -12,6 +12,16 @@
    
 }
 
+.comboBox {
+    /* -fx-background-color: #CCFFFF; */
+    -fx-background-color: #990000;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: red;
+    -fx-text-fill: wheat;
+    -fx-forground-color: red;
+   
+}
 .frame {
     /* -fx-background-color: #CCFFFF; */
     -fx-background-color: #110000;
@@ -21,12 +31,23 @@
 }
 
 .title-label {
+    font-family: Ariel;
     -fx-font-size: 18pt;
     -fx-background-color: #990000;
     -fx-background-radius: 10;    
-    -fx-text-fill: rgb(49, 89, 23);
+    -fx-text-fill: wheat;
 
 }
+
+.label-small {
+    -fx-font-family: Ariel;
+    -fx-font-size: 12pt;
+    -fx-background-color: #990000;
+    -fx-background-radius: 10;    
+    -fx-text-fill: wheat;
+}
+
+.NavBarCell1    { font-family: P22 DaVinci-Forward; background-color:#EEEEFF; color:#000000} /* Light mauve */
 
 .function-button{
     -fx-font-size: 18pt;
@@ -51,7 +72,7 @@
 
 .screen {
     -fx-font-size: 21pt;
-    -fx-text-fill: rgb(0, 255, 0);
+    -fx-text-fill: limegreen;
     -fx-background-color: black;
     -fx-border-color: rgb(240, 0, 0);
     -fx-border-radius: 5;

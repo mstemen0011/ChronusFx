@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.canvas.*?>
@@ -13,7 +14,7 @@
     <children>
       <AnchorPane layoutX="-2.0" layoutY="6.0" prefHeight="329.0" prefWidth="724.0" styleClass="frame">
          <children>
-            <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="313.0" prefWidth="705.0" styleClass="mainFxmlClass" stylesheets="@chronusfxml.css">
+            <AnchorPane layoutX="9.0" layoutY="4.0" prefHeight="323.0" prefWidth="705.0" styleClass="mainFxmlClass" stylesheets="@chronusfxml.css">
                <children>
                   <AnchorPane layoutX="14.0" layoutY="94.0" prefHeight="189.0" prefWidth="170.0" styleClass="screen">
                      <children>
@@ -75,20 +76,44 @@
                         <BoxBlur />
                      </effect>
                   </AnchorPane>
-                    <Label fx:id="label" layoutX="235.0" layoutY="16.0" minHeight="16" minWidth="69" prefHeight="53.0" prefWidth="236.0" styleClass="function-button" stylesheets="@chronusfxml.css" text="Chronus 2.0" textAlignment="CENTER" />
-                  <Button fx:id="mainButton" layoutX="564.0" layoutY="16.0" mnemonicParsing="false" onAction="#startAction" prefHeight="25.0" prefWidth="107.0" styleClass="function-button" text="Start" />
-                  <AnchorPane layoutX="34.0" layoutY="7.0" styleClass="mainFxmlClass">
+                    <Label fx:id="label" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="16.0" minHeight="16" minWidth="69" prefHeight="70.0" prefWidth="236.0" text="ChronusFx 2.1" textAlignment="CENTER" textFill="#fff2f2">
+                     <font>
+                        <Font name="P22DaVinci-Forward" size="36.0" />
+                     </font></Label>
+                  <Button fx:id="mainButton" layoutX="564.0" layoutY="16.0" mnemonicParsing="false" onAction="#startAction" prefHeight="25.0" prefWidth="107.0" styleClass="function-button" text="Start">
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                  <AnchorPane layoutX="6.0" layoutY="2.0" prefHeight="92.0" prefWidth="115.0" styleClass="mainFxmlClass">
                      <children>
-                        <ImageView fitHeight="82.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" styleClass="function-button">
+                        <ImageView fitHeight="85.0" fitWidth="88.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" styleClass="function-button">
                            <image>
-                              <Image url="@../../../Chronos/src/com/wms/chronos/images/splash_sm_1.png" />
+                              <Image url="file:/C:/Users/matthew.g.stemen/Pictures/chronusHourGlass_1_128.png.jpg" />
                            </image>
                         </ImageView>
                      </children>
+                     <effect>
+                        <DropShadow />
+                     </effect>
                   </AnchorPane>
-                  <ComboBox fx:id="colorChoice" layoutX="278.0" layoutY="283.0" onAction="#handleColorChoice" prefWidth="150.0" styleClass="mainFxmlClass" />
-                  <ComboBox fx:id="timeSlotChoice" layoutX="138.0" layoutY="283.0" onAction="#addTime" prefHeight="27.0" prefWidth="94.0" styleClass="mainFxmlClass" />
-                  <TextField fx:id="timeSlotName" layoutX="14.0" layoutY="284.0" onAction="#addTime" prefHeight="25.0" prefWidth="121.0" styleClass="mainFxmlClass" />
+                  <ComboBox fx:id="colorChoice" layoutX="279.0" layoutY="288.0" onAction="#handleColorChoice" prefWidth="150.0" styleClass="comboBox">
+                     <effect>
+                        <DropShadow />
+                     </effect></ComboBox>
+                  <ComboBox fx:id="timeSlotChoice" layoutX="148.0" layoutY="288.0" onAction="#selectTimeSlot" prefHeight="27.0" prefWidth="115.0" styleClass="comboBox">
+                     <effect>
+                        <DropShadow />
+                     </effect></ComboBox>
+                  <TextField fx:id="timeSlotName" layoutX="14.0" layoutY="288.0" onAction="#addTime" prefHeight="25.0" prefWidth="121.0" styleClass="mainFxmlClass">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <Label layoutX="457.0" layoutY="289.0" prefHeight="25.0" prefWidth="121.0" styleClass="label-small" text="Segment Type:" />
+                  <ComboBox fx:id="segmentTypeChoice" layoutX="564.0" layoutY="289.0" onAction="#handleTypeChoice" prefHeight="25.0" prefWidth="128.0" styleClass="comboBox">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ComboBox>
                </children>
                <effect>
                   <Reflection />
