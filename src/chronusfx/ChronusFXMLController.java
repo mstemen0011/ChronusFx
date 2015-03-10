@@ -158,8 +158,10 @@ public class ChronusFXMLController implements Initializable {
     private HashMap<String, TimeSlot> timeSlotMap;
             
     private boolean timeIsRunning = false;
+    
+    private final boolean testIsSet = false;
             
-    LED.type LedSegType = LED.type.Seven;
+    private final LED.type LedSegType = LED.type.Fourteen;
     
     @FXML
     private void startAction()
@@ -274,16 +276,74 @@ public class ChronusFXMLController implements Initializable {
         }
         
     }
+    private void test()
+    {
+        System.out.println("Testing LEDs, setting All Bits");
+                
+        secOneLED = new MultiSegmentLED(-1, LedSegType);
+        secTenLED = new MultiSegmentLED(-1, LedSegType);                
+        minOneLED = new MultiSegmentLED(-1, LedSegType);
+        minTenLED = new MultiSegmentLED(-1, LedSegType);
+        hourOneLED = new MultiSegmentLED(-1, LedSegType);
+        hourTenLED = new MultiSegmentLED(-1, LedSegType);
+        dayOneLED = new MultiSegmentLED(-1, LedSegType);
+        dayTenLED = new MultiSegmentLED(-1, LedSegType); 
+        
+        secOneLEDFx = new MultiSegmentLEDFx( secOne, secOneLED );
+        secOneLED.setLEDTo(-1);
+        secOneLEDFx.render();
+        secTenLEDFx = new MultiSegmentLEDFx( secTen, secTenLED );
+        secTenLED.setLEDTo(-1);
+        secTenLEDFx.render();
+        
+        minOneLEDFx = new MultiSegmentLEDFx( minOne, minOneLED );
+        minOneLED.setLEDTo(-1);
+        minOneLEDFx.render();
+        minTenLEDFx = new MultiSegmentLEDFx( minTen, minTenLED );
+        minTenLED.setLEDTo(-1);
+        minTenLEDFx.render();
+        
+        hourOneLEDFx = new MultiSegmentLEDFx( hourOne, hourOneLED );
+        hourOneLED.setLEDTo(-1);
+        hourOneLEDFx.render();
+        hourTenLEDFx = new MultiSegmentLEDFx( hourTen, hourTenLED );
+        hourTenLED.setLEDTo(-1);
+        hourTenLEDFx.render();
+        
+        dayOneLEDFx = new MultiSegmentLEDFx( dayOne, dayOneLED );
+        dayOneLED.setLEDTo(-1);
+        dayOneLEDFx.render();
+        dayTenLEDFx = new MultiSegmentLEDFx( dayTen, dayTenLED );
+        dayTenLED.setLEDTo(-1);
+        dayTenLEDFx.render();
+//        this.dayOneLEDFx.test();
+//        this.dayTenLEDFx.test();        
+//        this.hourOneLEDFx.test();
+//        this.hourTenLEDFx.test();
+//        this.minOneLEDFx.test();
+//        this.minTenLEDFx.test();
+//        this.secOneLEDFx.test();
+//        this.secTenLEDFx.test();
+    }
+    
     private void reset()
     {
-        this.dayOneLEDFx.setLEDTo(0);
-        this.dayTenLEDFx.setLEDTo(0);
-        this.hourOneLEDFx.setLEDTo(0);
-        this.hourTenLEDFx.setLEDTo(0);
-        this.minOneLEDFx.setLEDTo(0);
-        this.minTenLEDFx.setLEDTo(0);
-        this.secOneLEDFx.setLEDTo(0);
-        this.secTenLEDFx.setLEDTo(0);
+        if( testIsSet )
+        {
+            test();
+        
+        }    
+        else
+        {
+            this.dayOneLEDFx.setLEDTo(0);
+            this.dayTenLEDFx.setLEDTo(0);
+            this.hourOneLEDFx.setLEDTo(0);
+            this.hourTenLEDFx.setLEDTo(0);
+            this.minOneLEDFx.setLEDTo(0);
+            this.minTenLEDFx.setLEDTo(0);
+            this.secOneLEDFx.setLEDTo(0);
+            this.secTenLEDFx.setLEDTo(0);
+        }
       
     }
     
@@ -337,7 +397,7 @@ public class ChronusFXMLController implements Initializable {
             "blueviolet", "white");  
         
         ObservableList<String> segmentTypes = FXCollections.observableArrayList( 
-        "Seven", "Nine");
+        "Seven", "Nine", "Fourteen");
         timeSlotKeys = this.timeSlotChoice.getItems();
         colorChoice.setItems(data);
         segmentTypeChoice.setItems(segmentTypes);
@@ -354,7 +414,11 @@ public class ChronusFXMLController implements Initializable {
         colorChoice.setButtonCell(factory.call(null));
         
         timeline = new Timeline();
-        
+      
+        if( testIsSet )
+            test();
+        else
+        {
         secOneLED = new MultiSegmentLED(0, LedSegType);
         secTenLED = new MultiSegmentLED(0, LedSegType);                
         minOneLED = new MultiSegmentLED(0, LedSegType);
@@ -392,7 +456,7 @@ public class ChronusFXMLController implements Initializable {
         dayTenLEDFx.render();
         
         this.mainButton.setText( TimerAction.Start.getAction());
-        
+        }
         
     }    
     

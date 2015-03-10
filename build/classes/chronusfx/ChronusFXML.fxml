@@ -10,19 +10,19 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="722.0" styleClass="frame" stylesheets="@chronusfxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chronusfx.ChronusFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="742.0" styleClass="frame" stylesheets="@chronusfxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chronusfx.ChronusFXMLController">
     <children>
-      <AnchorPane layoutX="-2.0" layoutY="6.0" prefHeight="329.0" prefWidth="724.0" styleClass="frame">
+      <AnchorPane layoutY="8.0" prefHeight="329.0" prefWidth="769.0" styleClass="frame">
          <children>
-            <AnchorPane layoutX="9.0" layoutY="4.0" prefHeight="323.0" prefWidth="705.0" styleClass="mainFxmlClass" stylesheets="@chronusfxml.css">
+            <AnchorPane layoutX="9.0" layoutY="4.0" prefHeight="323.0" prefWidth="755.0" styleClass="mainFxmlClass" stylesheets="@chronusfxml.css">
                <children>
-                  <AnchorPane layoutX="14.0" layoutY="94.0" prefHeight="189.0" prefWidth="170.0" styleClass="screen">
+                  <AnchorPane layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
                      <children>
-                        <Canvas fx:id="dayTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0">
+                        <Canvas fx:id="dayTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="80.0">
                            <effect>
                               <Glow level="0.44" />
                            </effect></Canvas>
-                        <Canvas fx:id="dayOne" height="164.0" layoutX="85.0" layoutY="14.0" styleClass="led" width="67.0">
+                        <Canvas fx:id="dayOne" height="164.0" layoutX="85.0" layoutY="14.0" styleClass="led" width="80.0">
                            <effect>
                               <Glow level="0.44" />
                            </effect></Canvas>
@@ -33,26 +33,11 @@
                   </AnchorPane>
                   <AnchorPane layoutX="184.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
                      <children>
-                        <Canvas fx:id="hourTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0">
+                        <Canvas fx:id="hourTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="80.0">
                            <effect>
                               <Glow level="0.44" />
                            </effect></Canvas>
-                        <Canvas fx:id="hourOne" height="164.0" layoutX="89.0" layoutY="14.0" styleClass="led" width="67.0">
-                           <effect>
-                              <Glow level="0.44" />
-                           </effect></Canvas>
-                     </children>
-                     <effect>
-                        <BoxBlur />
-                     </effect>
-                  </AnchorPane>
-                  <AnchorPane layoutX="354.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
-                     <children>
-                        <Canvas fx:id="minTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0">
-                           <effect>
-                              <Glow level="0.44" />
-                           </effect></Canvas>
-                        <Canvas fx:id="minOne" height="164.0" layoutX="88.0" layoutY="14.0" styleClass="led" width="67.0">
+                        <Canvas fx:id="hourOne" height="164.0" layoutX="89.0" layoutY="14.0" styleClass="led" width="80.0">
                            <effect>
                               <Glow level="0.44" />
                            </effect></Canvas>
@@ -61,13 +46,28 @@
                         <BoxBlur />
                      </effect>
                   </AnchorPane>
-                  <AnchorPane layoutX="523.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
+                  <AnchorPane layoutX="366.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
                      <children>
-                        <Canvas fx:id="secTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="67.0">
+                        <Canvas fx:id="minTen" height="164.0" layoutX="9.0" layoutY="14.0" styleClass="led" width="80.0">
                            <effect>
                               <Glow level="0.44" />
                            </effect></Canvas>
-                        <Canvas fx:id="secOne" height="164.0" layoutX="88.0" layoutY="14.0" styleClass="led" width="67.0">
+                        <Canvas fx:id="minOne" height="164.0" layoutX="88.0" layoutY="14.0" styleClass="led" width="80.0">
+                           <effect>
+                              <Glow level="0.44" />
+                           </effect></Canvas>
+                     </children>
+                     <effect>
+                        <BoxBlur />
+                     </effect>
+                  </AnchorPane>
+                  <AnchorPane layoutX="548.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="screen">
+                     <children>
+                        <Canvas fx:id="secTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="80.0">
+                           <effect>
+                              <Glow level="0.44" />
+                           </effect></Canvas>
+                        <Canvas fx:id="secOne" height="164.0" layoutX="88.0" layoutY="14.0" styleClass="led" width="80.0">
                            <effect>
                               <Glow level="0.44" />
                            </effect></Canvas>

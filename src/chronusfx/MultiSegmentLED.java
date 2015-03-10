@@ -29,9 +29,17 @@ public final class MultiSegmentLED extends LED {
         DiaTopBar,
         DiaBottomBar,
         DiaTopLeftBar,
-        DiaBottomLeftBar,
         DiaTopRightBar,
+        CenterTopBar,
+        CenterBottomBar,
+        DiaBottomLeftBar,        
         DiaBottomRightBar,
+        MiddleBarLeft,
+        MiddleBarRight,
+        TopBarLeft,
+        TopBarRight,
+        BottomBarLeft,
+        BottomBarRight,
         DP;
     }
     private final EnumSet<Segment> segments = EnumSet.noneOf(Segment.class);
@@ -54,45 +62,6 @@ public final class MultiSegmentLED extends LED {
         segments.removeAll(EnumSet.range(Segment.TopBar, Segment.DP));
     }
 
-    public void status()
-    {
-        StringBuilder sb = new StringBuilder("\n\nStatus of LED: " + this.hashCode() );
-        sb.append("\n\nLED Type: ").append(type);
-        // if( EnumSet.of( Segment.TopBar) == segments.contains(sb))
-        if( segments.contains(EnumSet.of(Segment.TopBar)))
-        {
-            sb.append("\n\nTop bar is on\n");
-        }
-        if( segments.contains(EnumSet.of(Segment.TopLeftBar)))
-        {
-            sb.append("\n\nTop Left bar is on\n");
-        }
-        if( segments.contains(EnumSet.of(Segment.TopRightBar)))
-        {
-            sb.append("\n\nTop Right bar is on\n");
-        }
-        if( segments.contains(EnumSet.of(Segment.MiddleBar)))
-        {
-            sb.append("\n\nMiddle bar is on\n");
-        }
-        if( segments.contains(EnumSet.of(Segment.LowerLeftBar)))
-        {
-            sb.append("\n\nLower Left bar is on\n");
-        }
-        if( segments.contains(EnumSet.of(Segment.LowerRightBar)))
-        {
-            sb.append("\n\nLower Right bar is on\n");
-        }
-        if( segments.contains(EnumSet.of(Segment.BottomBar)))
-        {
-            sb.append("\n\nBottom bar is on\n");
-        }
-
-        System.out.println(sb.toString());
-
-
-    }
-
     public boolean isOn(Segment s)
     {
 //        System.out.println("Checking to see if segment (" + s + ") is on");
@@ -104,7 +73,7 @@ public final class MultiSegmentLED extends LED {
         // System.out.println("Setting LED to: " + i );
         if( timeWatcher != null )
             timeWatcher.update("Setting LED to: " + i);
-        if (i < 0 || i > 9) {
+        if (i < -1 || i > 9) {
             return;
         }
 
@@ -114,6 +83,10 @@ public final class MultiSegmentLED extends LED {
             case Nine:
                 
                 switch (i) {
+                case -1: // test all value
+                    System.out.println("Setting all bits");
+                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.DiaTopBar, Segment.MiddleBar, Segment.LowerLeftBar, Segment.LowerLeftBar, Segment.DiaBottomBar, Segment.LowerRightBar, Segment.BottomBar, Segment.DP ));
+                    break;    
                 case 0:
                     segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
                     break;
@@ -150,8 +123,12 @@ public final class MultiSegmentLED extends LED {
             case Seven:
                        
             switch (i) {
+            case -1:  // test all value
+                System.out.println("Setting all bits");
+                segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar, Segment.DP )); 
+                break;
             case 0:
-                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
+                segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
                 break;
             case 1:
                 segments.addAll(EnumSet.of( Segment.TopRightBar, Segment.LowerRightBar ));
@@ -186,35 +163,41 @@ public final class MultiSegmentLED extends LED {
             case Fourteen:
                 
                 switch (i) {
+
+                          
+                case -1:  // test all value
+                    System.out.println("Setting all bits");
+                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBarLeft, Segment.MiddleBarRight, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar, Segment.CenterTopBar, Segment.CenterBottomBar, Segment.DiaTopLeftBar, Segment.DiaTopRightBar, Segment.DiaBottomLeftBar, Segment.DiaBottomRightBar, Segment.DP )); 
+                    break;
                 case 0:
                     segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
                     break;
                 case 1:
-                    segments.addAll(EnumSet.of( Segment.DiaTopBar, Segment.TopRightBar, Segment.LowerRightBar ));
+                    segments.addAll(EnumSet.of( Segment.DiaTopRightBar, Segment.TopRightBar, Segment.LowerRightBar ));
                     break;
                 case 2:
-                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopRightBar, Segment.DiaBottomBar, Segment.BottomBar));
+                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopRightBar, Segment.MiddleBarLeft, Segment.MiddleBarRight, Segment.LowerLeftBar, Segment.BottomBar));
                     break;
                 case 3:
-                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.DiaTopBar, Segment.MiddleBar, Segment.DiaBottomBar));
+                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopRightBar, Segment.MiddleBarRight, Segment.LowerRightBar, Segment.BottomBar));
                     break;
                 case 4:
-                    segments.addAll(EnumSet.of(Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBar, Segment.LowerRightBar));
+                    segments.addAll(EnumSet.of(Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBarLeft, Segment.MiddleBarRight,  Segment.LowerRightBar));
                     break;
                 case 5:
-                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.MiddleBar, Segment.LowerRightBar, Segment.BottomBar));
+                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.MiddleBarLeft, Segment.MiddleBarRight, Segment.LowerRightBar, Segment.BottomBar));
                     break;
                 case 6:
-                    segments.addAll(EnumSet.of(Segment.DiaTopBar, Segment.MiddleBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
+                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.MiddleBarLeft, Segment.MiddleBarRight, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));                    
                     break;
                 case 7:
-                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.DiaTopBar ,Segment.LowerLeftBar ));
+                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.DiaTopRightBar ,Segment.CenterBottomBar ));
                     break;
                 case 8:
-                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBar, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
+                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBarLeft, Segment.MiddleBarRight, Segment.LowerLeftBar, Segment.LowerRightBar, Segment.BottomBar));
                     break;
                 case 9:
-                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBar, Segment.DiaBottomBar ));
+                    segments.addAll(EnumSet.of(Segment.TopBar, Segment.TopLeftBar, Segment.TopRightBar, Segment.MiddleBarLeft, Segment.MiddleBarRight, Segment.LowerRightBar));
                     break;
                 } // end value switch
             break;
