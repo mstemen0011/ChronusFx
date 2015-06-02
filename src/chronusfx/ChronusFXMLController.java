@@ -46,14 +46,46 @@ public class ChronusFXMLController implements Initializable {
         long startTimeStampInMillis = 0;
         String timeSlotName = "";
         boolean hasStarted = false;
+        Timeline timeline = null;
+        Long timeSeconds = null;
+        ChronusFXMLController chronus; // call back controller
+        boolean isFocused = false;
 
-        public TimeSlot() {
+        public TimeSlot( ChronusFXMLController myController) {
             createTimeStampInMillis = System.currentTimeMillis();
+            timeline = new Timeline();
+            timeSeconds = new Long(0);
+            this.chronus = myController;
         }
 
         public void start() {
             startTimeStampInMillis = System.currentTimeMillis();
+            this.isFocused = true;
             hasStarted = true;
+            timeline.play();
+           timeline = new Timeline();
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.getKeyFrames().add(
+                    new KeyFrame(Duration.seconds(1),
+                            new EventHandler() {
+                                // KeyFrame event handler
+                                @Override
+                                public void handle(Event event) {
+                                    timeSeconds++;
+                                    // update timer
+                                    if( isFocused ) // this is the current timeslot on display
+                                    {
+                                        chronus.setTime(timeSeconds * 1000);
+                                    }
+                                }
+                            }));
+            timeline.playFromStart();                 
+        }
+        
+        public void stop()
+        {
+            this.isFocused = false;
+            this.timeline.stop();
         }
 
     }
@@ -179,7 +211,7 @@ public class ChronusFXMLController implements Initializable {
             this.mainButton.setText(TimerAction.Stop.getAction());
             timeSeconds = STARTTIME;
             this.timeSlotName.setText("Default");
-            TimeSlot genTimeSlot = new TimeSlot();
+            TimeSlot genTimeSlot = new TimeSlot(this);
             genTimeSlot.start();
             this.timeSlotMap.put("Default", genTimeSlot);
             // update time
@@ -209,7 +241,7 @@ public class ChronusFXMLController implements Initializable {
         int dayTenVal = (int) days / 10;
         int dayOneVal = (int) days % 10;
         this.dayTenLEDFx.setLEDTo(dayTenVal);
-        this.dayTenLEDFx.setLEDTo(dayOneVal);
+        this.dayOneLEDFx.setLEDTo(dayOneVal);
         // calc and set the hours fields
         long hours = baseTime / 3600000;
         hours = hours % 60;
@@ -239,7 +271,7 @@ public class ChronusFXMLController implements Initializable {
         String newTimeSlotName = this.timeSlotName.getText();
         if (!this.timeSlotKeys.contains(newTimeSlotName)) {
             timeSlotKeys.add(newTimeSlotName);
-            TimeSlot newTimeSlot = new TimeSlot();
+            TimeSlot newTimeSlot = new TimeSlot(this);
             newTimeSlot.timeSlotName = newTimeSlotName;
             newTimeSlot.startTimeStampInMillis = System.currentTimeMillis();
             this.timeSlotMap.put(newTimeSlotName, newTimeSlot);
