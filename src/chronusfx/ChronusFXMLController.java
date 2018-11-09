@@ -39,7 +39,7 @@ public class ChronusFXMLController implements Initializable {
      relevent unique event ("lunch", "work start", etc ). At any given time a particular time slot can be shown and will
      continue to elapse (progressively) as long as it in focus of the main LED. The event can be  
      */
-
+    boolean isStarted = false;
     class TimeSlot {
 
         long createTimeStampInMillis = 0;
@@ -59,6 +59,8 @@ public class ChronusFXMLController implements Initializable {
         }
 
         public void start() {
+            if( isStarted )
+                return;
             startTimeStampInMillis = System.currentTimeMillis();
             this.isFocused = true;
             hasStarted = true;
@@ -79,7 +81,8 @@ public class ChronusFXMLController implements Initializable {
                                     }
                                 }
                             }));
-            timeline.playFromStart();                 
+            timeline.playFromStart();
+            isStarted = true;
         }
         
         public void stop()
@@ -194,10 +197,22 @@ public class ChronusFXMLController implements Initializable {
 
     private boolean timeIsRunning = false;
 
-    private final boolean testIsSet = false;
+    private final boolean testIsSet = true;
 
     private final LED.type LedSegType = LED.type.Fourteen;
 
+    @FXML
+    private void testAction() {
+        this.secOneLEDFx.test();
+        this.secTenLEDFx.test();
+        this.dayOneLEDFx.test();
+        this.dayTenLEDFx.test();
+        this.hourOneLEDFx.test();
+        this.hourTenLEDFx.test();
+        this.minOneLEDFx.test();
+        this.minTenLEDFx.test();
+    }
+    
     @FXML
     private void startAction() {
         String currentAction = this.mainButton.getText();

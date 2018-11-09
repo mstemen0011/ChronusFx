@@ -23,10 +23,10 @@ public class ChronusFx extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("ChronusFXML.fxml"));
-        Image systemImage = new Image(getClass().getResourceAsStream("/chronusfx/images/ChronusIcoFlat.png"));
+        Image systemImage = new Image(getClass().getResourceAsStream("/chronusfx/images/ChronusIcoFlat.ico"));
         Scene scene = new Scene(root);
         stage.getIcons().add(systemImage);
-        stage.initStyle(StageStyle.UNIFIED);
+        // stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.show();
     }
