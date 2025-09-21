@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ChronusFx2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/distro/run770000808/ChronusFx.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,17 @@
+<component name="libraryTable">
+  <library name="ChronusFx">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/dist/ChronusFx.jar!/" />
+      <root url="file://$USER_HOME$/Downloads/javafx-sdk-25/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <NATIVE>
+      <root url="file://$USER_HOME$/Downloads/javafx-sdk-25/lib" />
+    </NATIVE>
+    <SOURCES>
+      <root url="file://$USER_HOME$/Downloads/javafx-sdk-25" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Downloads/javafx-sdk-25/lib" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/Downloads/javafx-sdk-25" recursive="false" type="SOURCES" />
+  </library>
+</component>
