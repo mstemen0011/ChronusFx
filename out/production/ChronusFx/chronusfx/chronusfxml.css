@@ -1,0 +1,94 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    /* -fx-background-color: #CCFFFF; */
+    -fx-background-color: #990000;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: red;
+    -fx-text-fill: wheat;
+   
+}
+
+.comboBox {
+    /* -fx-background-color: #CCFFFF; */
+    -fx-background-color: #990000;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: red;
+    -fx-text-fill: wheat;
+    -fx-forground-color: red;
+   
+}
+.frame {
+    /* -fx-background-color: #CCFFFF; */
+    -fx-background-color: #110000;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: red;
+}
+
+.title-label {
+    font-family: Ariel;
+    -fx-font-size: 18pt;
+    -fx-background-color: #990000;
+    -fx-background-radius: 10;    
+    -fx-text-fill: wheat;
+
+}
+
+.label-small {
+    -fx-font-family: Ariel;
+    -fx-font-size: 12pt;
+    -fx-background-color: #990000;
+    -fx-background-radius: 10;    
+    -fx-text-fill: wheat;
+}
+
+.NavBarCell1    { font-family: P22 DaVinci-Forward; background-color:#EEEEFF; color:#000000} /* Light mauve */
+
+.function-button{
+    -fx-font-size: 18pt;
+    -fx-text-fill: wheat;
+    /* -fx-background-color: #DFB951; */
+    -fx-background-color: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 5;
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-insets: 3;
+    -fx-padding: 5;
+}
+
+.custom-button {
+    -fx-font-size: 18pt;
+    -fx-text-fill: rgb(49, 89, 23);
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+}
+
+
+.screen {
+    -fx-font-size: 21pt;
+    -fx-text-fill: limegreen;
+    -fx-background-color: black;
+    -fx-border-color: rgb(240, 0, 0);
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+}
+
+.led {
+    -fx-background-color: black;
+}
+.num-button {
+    -fx-font-size: 16pt;
+    -fx-padding: 3;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-text-fill: white;
+    -fx-border-color: rgb(49, 89, 23);   
+    -fx-border-insets: 3;
+    -fx-background-color: #990000;
+}

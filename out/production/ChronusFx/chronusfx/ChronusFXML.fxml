@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.canvas.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="344.0" prefWidth="742.0" styleClass="flat-back-4" stylesheets="@styles/Flatfxml.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="chronusfx.ChronusFXMLController">
+    <children>
+      <AnchorPane layoutY="8.0" prefHeight="329.0" prefWidth="769.0" styleClass="flat-back-4">
+         <children>
+            <AnchorPane layoutX="9.0" layoutY="4.0" prefHeight="323.0" prefWidth="755.0" styleClass="flat-back-4" stylesheets="@../../../../../../../dev/styles/Flatfxml.css">
+               <children>
+                  <AnchorPane layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="flat-back-6">
+                     <children>
+                        <Canvas fx:id="dayOne" height="164.0" layoutX="85.0" layoutY="14.0" styleClass="led" width="80.0" />
+                        <Canvas fx:id="dayTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="80.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="366.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="flat-back-6">
+                     <children>
+                        <Canvas fx:id="minTen" height="164.0" layoutX="9.0" layoutY="14.0" styleClass="led" width="80.0" />
+                        <Canvas fx:id="minOne" height="164.0" layoutX="88.0" layoutY="14.0" styleClass="led" width="80.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="184.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="flat-back-6">
+                     <children>
+                        <Canvas fx:id="hourOne" height="164.0" layoutX="89.0" layoutY="14.0" styleClass="led" width="80.0" />
+                        <Canvas fx:id="hourTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="80.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="548.0" layoutY="94.0" prefHeight="120.0" prefWidth="163.0" styleClass="flat-back-6">
+                     <children>
+                        <Canvas fx:id="secTen" height="164.0" layoutX="14.0" layoutY="14.0" styleClass="led" width="80.0" />
+                        <Canvas fx:id="secOne" height="164.0" layoutX="88.0" layoutY="14.0" styleClass="led" width="80.0" />
+                     </children>
+                  </AnchorPane>
+                    <Label fx:id="label" alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="16.0" minHeight="16" minWidth="69" prefHeight="70.0" prefWidth="236.0" styleClass="flat-label-18" text="ChronusFx 2.1" textAlignment="CENTER" textFill="#fff2f2">
+                     <font>
+                        <Font name="P22DaVinci-Forward" size="36.0" />
+                     </font></Label>
+                  <Button fx:id="mainButton" layoutX="525.0" layoutY="14.0" mnemonicParsing="false" onAction="#startAction" prefHeight="25.0" prefWidth="107.0" styleClass="mainFxmlClass" text="Start">
+                     <effect>
+                        <DropShadow />
+                     </effect></Button>
+                  <AnchorPane layoutX="6.0" layoutY="2.0" prefHeight="86.0" prefWidth="107.0" styleClass="mainFxmlClass">
+                     <children>
+                        <ImageView fitHeight="78.0" fitWidth="85.0" layoutX="14.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" styleClass="function-button">
+                           <image>
+                              <Image url="@images/splash_sm_1.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </AnchorPane>
+                  <ComboBox fx:id="colorChoice" layoutX="279.0" layoutY="288.0" onAction="#handleColorChoice" prefWidth="150.0" styleClass="mainFxmlClass">
+                     <effect>
+                        <DropShadow />
+                     </effect></ComboBox>
+                  <ComboBox fx:id="timeSlotChoice" layoutX="148.0" layoutY="288.0" onAction="#selectTimeSlot" prefHeight="27.0" prefWidth="115.0" styleClass="mainFxmlClass">
+                     <effect>
+                        <DropShadow />
+                     </effect></ComboBox>
+                  <TextField fx:id="timeSlotName" layoutX="14.0" layoutY="288.0" onAction="#addTime" prefHeight="25.0" prefWidth="121.0" styleClass="mainFxmlClass">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <Label layoutX="457.0" layoutY="289.0" prefHeight="25.0" prefWidth="121.0" styleClass="label-small" text="Segment Type:" />
+                  <ComboBox fx:id="segmentTypeChoice" layoutX="607.0" layoutY="289.0" onAction="#handleTypeChoice" prefHeight="25.0" prefWidth="128.0" styleClass="mainFxmlClass">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ComboBox>
+                  <Button fx:id="mainButton1" layoutX="649.0" layoutY="14.0" mnemonicParsing="false" onAction="#testAction" prefHeight="25.0" prefWidth="107.0" styleClass="mainFxmlClass" text="Test">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+               </children>
+               <effect>
+                  <Reflection />
+               </effect>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>
